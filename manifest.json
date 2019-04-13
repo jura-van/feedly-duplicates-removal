@@ -1,0 +1,29 @@
+{
+  "manifest_version": 2,
+  "name": "Feedly Unique",
+  "description": "Chrome extension for duplicate links removal in Feedly",
+  "version": "0.1",
+  "browser_action": {
+    "default_icon": "icon.png"
+  },
+  "permissions": [
+    "activeTab",
+    "http://www.feedly.com/"
+  ],
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "cleanup.js"
+      ],
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ]
+    }
+  ]
+}
