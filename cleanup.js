@@ -25,7 +25,7 @@ chrome.runtime.onMessage.addListener(
                         if (!existsAlready) {
                             uniqueTitles.push(currentTitle);
                         } else {
-                            unreadItemsOnPage[unreadItemsIndex].getElementsByClassName("icon condensed-toolbar-icon icon-fx-cross-ios-sm-black")[0].click();
+                            unreadItemsOnPage[unreadItemsIndex].getElementsByClassName("icon-fx-cross-ios-sm-black")[0].click();
                             // do not send too many requests to Feedly at once - remove just approx. 8 links per second
                             setTimeout(continueProcessing, 125);
                             break;
