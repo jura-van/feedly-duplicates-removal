@@ -4,15 +4,15 @@ chrome.runtime.onMessage.addListener(
         if (request.message === "clicked_feedly_unique") {
 
             var uniqueTitles = new Array();
-            var unreadItemsOnPage = document.getElementsByClassName("unread");
+            var unreadItemsOnPage = document.getElementsByClassName("entry--unread");
             var unreadItemsIndex = 0;
 
             function continueProcessing() {
 
                 for (unreadItemsIndex; unreadItemsIndex < unreadItemsOnPage.length; unreadItemsIndex++) {
 
-                    if (unreadItemsOnPage[unreadItemsIndex].getAttribute("data-title") != null) {
-                        var currentTitle = unreadItemsOnPage[unreadItemsIndex].getAttribute("data-title").trim().toLowerCase();
+                    if (unreadItemsOnPage[unreadItemsIndex].getElementsByClassName("entry__title")[0] != null) {
+                        var currentTitle = unreadItemsOnPage[unreadItemsIndex].getElementsByClassName("entry__title")[0].innerHTML.trim().toLowerCase();
                         var existsAlready = false;
 
                         for (var j = 0; j < uniqueTitles.length; j++) {
@@ -25,7 +25,7 @@ chrome.runtime.onMessage.addListener(
                         if (!existsAlready) {
                             uniqueTitles.push(currentTitle);
                         } else {
-                            unreadItemsOnPage[unreadItemsIndex].getElementsByClassName("icon-fx-cross-ios-sm-black")[0].click();
+                            unreadItemsOnPage[unreadItemsIndex].getElementsByClassName("EntryHideButton icon")[0].click();
                             // do not send too many requests to Feedly at once - remove just approx. 8 links per second
                             setTimeout(continueProcessing, 125);
                             break;
